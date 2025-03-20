@@ -42,6 +42,9 @@ buildNumber.properties
 .mvn/timing.properties
 MANIFEST.MF
 
+# Build
+build/
+
 # Spring
 application*.yml
 application*.yaml
