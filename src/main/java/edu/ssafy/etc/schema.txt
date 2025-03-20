@@ -4,6 +4,14 @@ use memberdb;
 
 create table member(
 	id varchar(50) primary key,
-	pw varchar(50) not null,
-	name varchar(50) not null
+    pw varchar(50) not null,
+    name varchar(50) not null
+ );
+ 
+CREATE TABLE board (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100),
+    content VARCHAR(500),
+    registid VARCHAR(50),
+    registdate DATETIME
 );

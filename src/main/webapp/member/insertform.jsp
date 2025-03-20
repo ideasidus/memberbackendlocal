@@ -1,18 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="jakarta.tags.core"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>  
 
-<c:set var="root" value="${pageContext.servletContext.contextPath }"></c:set>
+<c:set var="root" value="${pageContext.request.contextPath }" scope="request"/>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 입력 폼</title>
+<title>Insert title here</title>
 </head>
 <body>
+		
 	<div align="center">
 		<h1>회원입력</h1>
-		<form action="${root}/member?action=memberinsert" method="post">
+		<form action="${root }/member?action=memberinsert" method="post">
 			<table>
 				<tr>
 					<td>ID</td>
@@ -30,8 +32,10 @@
 					<td></td>
 					<td><input type="submit" value="입력" /></td>
 				</tr>
+
 			</table>
 		</form>
+		<%@ include file="footer.jsp" %>
 	</div>
 </body>
 </html>

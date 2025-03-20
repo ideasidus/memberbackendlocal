@@ -6,6 +6,7 @@
 	<artifactId>MemberBackendLocal</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+
 	<properties>
 		<jakarta.servelt.version>6.0.0</jakarta.servelt.version>
 		<jakarta.servlet.jsp-api.version>4.0.0</jakarta.servlet.jsp-api.version>
@@ -13,6 +14,8 @@
 		<jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
 		<jakarta.servlet.jsp.jstl-api.version>3.0.1</jakarta.servlet.jsp.jstl-api.version>
 	</properties>
+
+
 	<dependencies>
 		<dependency>
 			<groupId>jakarta.servlet</groupId>
@@ -42,6 +45,8 @@
 			<version>${jakarta.servlet.jsp.jstl-api.version}</version>
 		</dependency>
 	</dependencies>
+
+
 	<build>
 		<resources>
 			<resource>

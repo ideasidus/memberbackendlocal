@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%
-request.setAttribute("name", "둘리");
-String[] music = { "학교종이땡땡땡", "어린음악단", "라면송", "라디오가가" };
-session.setAttribute("music", music);
-%>
+    pageEncoding="UTF-8"%>
+    
+ <% 
+ 	request.setAttribute("name", "둘리");
+ 	String [] music = {"학교종이땡땡이","어린음악단","라면송"};
+ 	pageContext.setAttribute("music", music);
+ %>   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,12 +14,14 @@ session.setAttribute("music", music);
 <title>Insert title here</title>
 </head>
 <body>
-	<%=request.getAttribute("name")%><br> ${name }
-	<br> ${music[0] }
-	<br>
-	<%=request.getParameter("name")%>
-	<br> ${param.name } ${param.age + 1 } ${param.age eq 9 }
-
-	<!-- ne, gt, lt, addr -->
+	<%= request.getAttribute("name") %>
+	${name }<br>
+	${music[0] }<br>
+	<%= request.getParameter("name") %><br>
+	${param.name }
+	${param.age  + 1 }<br>
+	${param.age eq 9 }<br>
+	${param.age ne 9 }<br>
+	${!empty param.addr }
 </body>
 </html>

@@ -10,7 +10,6 @@ public class DBUtil {
 	private static final String USER = "ssafy";
 	private static final String PASSWORD = "ssafy";
 
-	// 스태틱 블록은 생성자보다 먼저 실행된다.
 	static {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
