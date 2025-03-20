@@ -125,11 +125,13 @@ public class MemberController extends HttpServlet {
 			service.MemberInsert(memberDto);
 
 			// 3. 화면 처리
-			String html = """
-					<h2>회원 추가가 완료 되었습니다</h2>
-					""";
-			resp.setContentType("text/html; charset=UTF-8");
-			resp.getWriter().append(html);
+//			String html = """
+//					<h2>회원 추가가 완료 되었습니다</h2>
+//					""";
+//			resp.setContentType("text/html; charset=UTF-8");
+//			resp.getWriter().append(html);
+			req.setAttribute("resMsg", "회원 추가가 완료 되었습니다.");
+			req.getRequestDispatcher("/member/result.jsp").forward(req, resp);
 			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
