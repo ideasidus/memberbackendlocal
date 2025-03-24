@@ -86,9 +86,6 @@ public class MemberController extends HttpServlet {
 
 	private String logout(HttpServletRequest req, HttpServletResponse resp) {
 		req.getSession().invalidate();
-		Cookie cookie = new Cookie("idsave", null);
-		cookie.setMaxAge(0);
-		resp.addCookie(cookie);
 		return "redirect:/index.jsp";
 	}
 
@@ -100,6 +97,11 @@ public class MemberController extends HttpServlet {
 		if (idsave != null) {
 			Cookie cookie = new Cookie("idsave", id);
 			cookie.setMaxAge(60 * 60 * 10);
+			cookie.setPath("/");
+			resp.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("idsave", "");
+			cookie.setMaxAge(0);
 			cookie.setPath("/");
 			resp.addCookie(cookie);
 		}
