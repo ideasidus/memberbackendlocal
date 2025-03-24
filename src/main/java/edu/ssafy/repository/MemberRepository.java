@@ -10,4 +10,5 @@ public interface MemberRepository {
 	int MemberDelete(String id) throws Exception;
 	List<MemberDto> MemberSelectAll() throws Exception;
 	MemberDto MemberSelect(String id) throws Exception;
+	
 }

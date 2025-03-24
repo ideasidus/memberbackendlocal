@@ -8,10 +8,10 @@ create table member(
     name varchar(50) not null
  );
  
-CREATE TABLE board (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(100),
-    content VARCHAR(500),
-    registid VARCHAR(50),
-    registdate DATETIME
-);
+ create table board(
+ 	id int primary key,
+ 	title varchar(100),
+ 	content varchar(500),
+ 	registid varchar(50),
+ 	registdate datetime 
+)

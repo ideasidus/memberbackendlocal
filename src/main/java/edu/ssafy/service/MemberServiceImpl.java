@@ -6,11 +6,13 @@ import edu.ssafy.dto.MemberDto;
 import edu.ssafy.repository.MemberRepository;
 import edu.ssafy.repository.MemberRepositoryImpl;
 
-public class MemberServiceImpl implements MemberService{
+public class MemberServiceImpl implements MemberService {
 	MemberRepository repo;
+
 	public MemberServiceImpl() {
 		repo = new MemberRepositoryImpl();
 	}
+
 	@Override
 	public int MemberInsert(MemberDto m) throws Exception {
 		// TODO Auto-generated method stub
@@ -40,6 +42,7 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated method stub
 		return repo.MemberSelect(id);
 	}
+
 	@Override
 	public int MemberDeletes(String[] ids) throws Exception {
 		int cnt = 0;
@@ -47,6 +50,15 @@ public class MemberServiceImpl implements MemberService{
 			cnt += repo.MemberDelete(id);
 		}
 		return cnt;
+	}
+
+	@Override
+	public MemberDto login(String id, String pw) throws Exception {
+		MemberDto dto = this.MemberSelect(id);
+		if (dto != null && dto.getPw().equals(pw)) {
+			return dto;
+		}
+		return null;
 	}
 
 }
