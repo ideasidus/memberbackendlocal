@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div align="center">
-		<a href="${root}/index.html" >초기화면</a>
+		<a href="${root}/index.jsp" >초기화면</a>
 	</div>
 </body>
 </html>
