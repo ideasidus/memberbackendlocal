@@ -10,7 +10,7 @@ public class MemberServiceImpl implements MemberService {
 	MemberRepository repo;
 
 	public MemberServiceImpl() {
-		repo = new MemberRepositoryImpl();
+		repo = MemberRepositoryImpl.getDao();
 	}
 
 	@Override

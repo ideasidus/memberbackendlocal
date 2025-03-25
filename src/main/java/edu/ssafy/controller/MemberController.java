@@ -42,8 +42,8 @@ public class MemberController extends HttpServlet {
 		String action = req.getParameter("action");
 		String url = new String();
 		try {
-			if (action == null && action.isBlank()) {
-				url = "index.html";
+			if (action == null || action.isBlank()) {
+				url = "index.jsp";
 			} else {
 				if (action.equals("/")) {
 

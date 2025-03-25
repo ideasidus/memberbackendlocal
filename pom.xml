@@ -13,6 +13,7 @@
 		<mysql-connector-j.version>8.4.0</mysql-connector-j.version>
 		<jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
 		<jakarta.servlet.jsp.jstl-api.version>3.0.1</jakarta.servlet.jsp.jstl-api.version>
+		<HikariCP.version>6.2.1</HikariCP.version>
 	</properties>
 
 
@@ -43,6 +44,11 @@
 			<groupId>jakarta.servlet.jsp.jstl</groupId>
 			<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
 			<version>${jakarta.servlet.jsp.jstl-api.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zaxxer</groupId>
+			<artifactId>HikariCP</artifactId>
+			<version>${HikariCP.version}</version>
 		</dependency>
 	</dependencies>
 

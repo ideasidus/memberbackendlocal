@@ -10,7 +10,7 @@ public class BoardServiceImpl implements BoardService {
 	BoardRepository repo;
 
 	public BoardServiceImpl() {
-		repo = new BoardRepositoryImpl();
+		repo = BoardRepositoryImpl.getDao();
 	}
 
 	@Override
