@@ -27,7 +27,7 @@ public class DBUtil {
 		config.addDataSourceProperty("profileSQL", "true"); // 쿼리 프로파일링 활성화
 
 		config.setMaximumPoolSize(5);
-		config.setMinimumIdle(1);
+		config.setMinimumIdle(3);
 		config.setConnectionTimeout(1000 * 60 * 10); // DB사용을 위해 기다릴 시간
 		config.setIdleTimeout(1000 * 60 * 3); // DB 사용이 종료된 후 커넥션이 닫히지 않고 기다릴시간 (MininumIdle 개 이상인 경우)
 

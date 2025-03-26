@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import edu.ssafy.dto.MemberDto;
+import edu.ssafy.dto.SearchCondition;
 import edu.ssafy.etc.DBUtil;
 
 /*
@@ -101,6 +102,63 @@ public class MemberRepositoryImpl implements MemberRepository {
 		}
 		dbUtil.close(connection);
 		return dto;
+	}
+
+	@Override
+	public int getTotalCount(SearchCondition condition) throws Exception {
+		Connection conn = dbUtil.getConnection();
+		int result = 0;
+		StringBuilder sql = new StringBuilder("SELECT COUNT(id) FROM member");
+		boolean hasKeyWord = condition.hasKeyword();
+		if (hasKeyWord) {
+			sql.append(" WHERE %s LIKE ?".formatted(condition.getKey()));
+		}
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			if (hasKeyWord) {
+				pstmt.setString(1, "%" + condition.getWord() + "%");
+			}
+
+			ResultSet rset = pstmt.executeQuery();
+			if (rset.next()) {
+				result = rset.getInt(1);
+			}
+		}
+		dbUtil.close(conn);
+
+		return result;
+	}
+
+	@Override
+	public List<MemberDto> search(SearchCondition condition) throws Exception {
+		Connection conn = dbUtil.getConnection();
+		List<MemberDto> members = new ArrayList<>();
+
+		boolean hasKeyWord = condition.hasKeyword();
+		StringBuilder sql = new StringBuilder("SELECT * FROM member ");
+		if (hasKeyWord) {
+			sql.append("WHERE %s LIKE ? ".formatted(condition.getKey()));
+		}
+		sql.append(" ORDER BY id DESC LIMIT ?,?");
+		try (PreparedStatement pstmt = conn.prepareStatement(sql.toString())) {
+			int idx = 1;
+			if (hasKeyWord) {
+				pstmt.setString(idx++, "%" + condition.getWord() + "%");
+			}
+			pstmt.setInt(idx++, condition.getOffset());
+			pstmt.setInt(idx++, condition.getItemsPerPage());
+
+			ResultSet rset = pstmt.executeQuery();
+			while (rset.next()) {
+				MemberDto member = new MemberDto();
+				member.setId(rset.getString("id"));
+				member.setPw(rset.getString("pw"));
+				member.setName(rset.getString("name"));
+				members.add(member);
+			}
+		}
+		dbUtil.close(conn);
+
+		return members;
 	}
 
 }

@@ -13,7 +13,7 @@
 		<a href="/MemberBackendLocal/member/insertform.jsp">회원입력</a>
 		<a href="">회원수정</a>
 		<a href="">회원삭제</a>
-		<a href="/MemberBackendLocal/member?action=memberselectall">회원조회</a>
+		<a href="/MemberBackendLocal/member?action=memberselectall&currentPage=1">회원조회</a>
 	</div>
 </body>
 </html>

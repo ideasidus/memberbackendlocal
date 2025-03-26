@@ -1,9 +1,11 @@
 package edu.ssafy.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.SQLException;
 
 import edu.ssafy.dto.MemberDto;
+import edu.ssafy.dto.Page;
+import edu.ssafy.dto.SearchCondition;
 import edu.ssafy.service.MemberService;
 import edu.ssafy.service.MemberServiceImpl;
 import jakarta.servlet.ServletException;
@@ -125,21 +127,18 @@ public class MemberController extends HttpServlet {
 	private String memberSelectAll(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		System.out.println("select All");
 		// 1. 파라미터 처리
-
+		String key = req.getParameter("key");
+		String word = req.getParameter("word");
+		Integer currentPage = Integer.parseInt(req.getParameter("currentPage"));
 		// 2. 로직처리
-		List<MemberDto> list = service.MemberSelectAll();
-
-		// 3. 화면처리
-//		StringBuilder html = new StringBuilder();
-//		for (MemberDto m : list) {
-//			html.append("id : "+m.getId() + " , " + "pw : "+m.getPw() + " , " + "name : "+m.getName()+"<br/>");
-//		}
-//		
-//		resp.setContentType("text/html; charset=utf-8");
-//		resp.getWriter().write(html.toString());
-
-		req.setAttribute("list", list);
-		// req.getRequestDispatcher("/member/selectmember.jsp").forward(req, resp);
+		try {
+			Page<MemberDto> page = service.search(new SearchCondition(key, word, currentPage));
+			req.setAttribute("page", page);
+		} catch (SQLException e) {
+			req.setAttribute("errMsg", e.getMessage());
+			req.setAttribute("exception", e);
+			return "/error/error.jsp";
+		}
 		return "/member/selectmember.jsp";
 	}
 
@@ -163,7 +162,7 @@ public class MemberController extends HttpServlet {
 		// String contextpath = req.getContextPath();
 		// resp.sendRedirect(contextpath+"/member?action=memberselectall");
 
-		return "redirect:/member?action=memberselectall";
+		return "redirect:/member?action=memberselectall&currentPage=1";
 	}
 
 	private String memberSelect(HttpServletRequest req, HttpServletResponse resp) throws Exception {

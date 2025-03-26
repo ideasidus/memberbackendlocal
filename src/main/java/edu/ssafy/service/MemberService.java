@@ -3,6 +3,8 @@ package edu.ssafy.service;
 import java.util.List;
 
 import edu.ssafy.dto.MemberDto;
+import edu.ssafy.dto.Page;
+import edu.ssafy.dto.SearchCondition;
 
 public interface MemberService {
 	int MemberInsert(MemberDto m) throws Exception;
@@ -18,4 +20,6 @@ public interface MemberService {
 	int MemberDeletes(String[] ids) throws Exception;
 
 	MemberDto login(String id, String pw) throws Exception;
+
+	Page<MemberDto> search(SearchCondition condition) throws Exception;
 }

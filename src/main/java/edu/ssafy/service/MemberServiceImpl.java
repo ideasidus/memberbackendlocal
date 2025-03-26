@@ -3,6 +3,8 @@ package edu.ssafy.service;
 import java.util.List;
 
 import edu.ssafy.dto.MemberDto;
+import edu.ssafy.dto.Page;
+import edu.ssafy.dto.SearchCondition;
 import edu.ssafy.repository.MemberRepository;
 import edu.ssafy.repository.MemberRepositoryImpl;
 
@@ -59,6 +61,15 @@ public class MemberServiceImpl implements MemberService {
 			return dto;
 		}
 		return null;
+	}
+
+	@Override
+	public Page<MemberDto> search(SearchCondition condition) throws Exception {
+		int totalItems = repo.getTotalCount(condition);
+		System.out.println("totalItems:" + totalItems);
+		List<MemberDto> members = repo.search(condition);
+		System.out.println("membersSize:" + members.size());
+		return new Page<>(condition, totalItems, members);
 	}
 
 }
